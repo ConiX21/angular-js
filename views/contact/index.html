@@ -1,0 +1,31 @@
+<div ng-init="onInit()"></div>
+
+<h1 ng-class="{'color-background':state}" class="basic-color">{{title}}</h1>
+
+<div ng-switch="online">
+        <button ng-switch-when="true"
+                ng-click="onClick()" 
+                ng-class="{'btn-danger': !online, 'btn-success' : online}" 
+                class="btn" type="button">Show Contact</button>
+        <button ng-switch-when="false"
+                ng-click="onClick()" 
+                ng-class="{'btn-danger': !online, 'btn-success' : online}" 
+                class="btn" type="button" disabled>Show Contact</button>
+</div>
+
+<input type="text" ng-disabled="!online" value="{{online}}">
+
+<!-- call filter -->
+<div>{{contactObject | json}}</div>
+
+<div ng-show="state" class="show-hide">
+    <div class="col-md-3 col-md-offset-3">
+        <label>{{contactObject.contactName}}</label>
+        <br>
+        <label>{{contactObject.email}}</label>
+    </div>
+    <div class="col-md-3">
+        <img ng-src="{{contactObject.src}}">
+    </div>
+</div>
+

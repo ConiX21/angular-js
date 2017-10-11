@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
+    <script src="libs/angular/angular.min.js"></script>
+    <script src="libs/angular-animate/angular-animate.min.js"></script>
+    <script src="main.js"></script>
+
+    <!-- Modules -->
+    <script src="libs/angular-route/angular-route.min.js"></script>
+
+    <!-- Controllers -->
+    <script src="controllers/contactCtrl.js"></script>
+
+    <!-- Directives -->
+
+    <!-- Services -->
+
+    <style>
+        body {
+            padding-top: 70px;
+            padding-bottom: 70px;
+        }
+
+        .show-hide {
+            transition: all linear 0.5s;
+        }
+
+        .show-hide.ng-hide {
+            opacity: 0;
+        }
+
+        .color-background{
+            background-color: hsla(307, 11%, 30%, 0.541);
+        }
+
+        .basic-color{
+            color:white;
+        }
+    </style>
+</head>
+
+<body ng-app="productApp">
+    <div class="container">
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <a class="navbar-brand" href="#">Product manager</a>
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="#">Home</a>
+                </li>
+                <li>
+                    <a href="#">Product</a>
+                </li>
+                <li>
+                    <a href="#!/contact">Contact</a>
+                </li>
+                <li>
+                    <a href="#">Mentions</a>
+                </li>
+            </ul>
+        </nav>
+        <article ng-view>
+        </article>
+        <nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
+            <div class="text-center" style="color:white">
+                Copyright@m2i-formation.fr
+            </div>
+        </nav>
+    </div>
+
+</body>
+
+</html>
