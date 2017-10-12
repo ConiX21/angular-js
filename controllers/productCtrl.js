@@ -61,15 +61,6 @@
         ]
         $scope.counter = 0;
         
-        var increaseCounter = function () {
-              $scope.size += 10 ;
-        }
-
-        var loop = $interval(increaseCounter, 100, 12);
-
-        loop.then(function(){
-            $scope.stateWait = false;
-        })
 
         activate();
 
@@ -77,7 +68,18 @@
 
         function activate() {
 
-
+            var cpt = 0;
+            
+            var increaseCounter = function () {
+                  $scope.size = {'width' : cpt + '%'} ;
+                  cpt += 10;
+            }
+    
+            var loop = $interval(increaseCounter, 100, 12);
+    
+            loop.then(function(){
+                $scope.stateWait = false;
+            })
 
 
         }

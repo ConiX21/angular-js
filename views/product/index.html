@@ -3,7 +3,7 @@
 <div class="animate-switch-container" ng-switch on="stateWait">
     <div class="animate-switch" ng-switch-when="true">
         <div class="progress">
-            <div class="progress-bar progress-bar-warning progress-bar-striped" style="width:{{size}}%">
+            <div class="progress-bar progress-bar-warning progress-bar-striped" ng-style="size">
             </div>
         </div>
     </div>
@@ -22,7 +22,5 @@
                <tr my-row ng-repeat="prod in products track by $index" prod="prod"></tr>
             </tbody>
         </table>
-
     </div>
-
 </div>
