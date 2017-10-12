@@ -1,0 +1,8 @@
+<div ng-controller="homeCtrl">
+    <h1>{{title}}</h1>
+
+    <div class="row">
+        <home-panel ng-repeat="p in paragraphs track by $index" paragraph="p" on-external-click="onSendIndex($index)"></home-panel>
+    </div>
+
+</div>

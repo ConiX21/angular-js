@@ -3,7 +3,7 @@ var productApp = angular.module('productApp', ['ngRoute', 'ngAnimate']);
 productApp.config(function($routeProvider){
     $routeProvider
         .when('/home',{
-            template : '<h1>Home page</h1>'
+            templateUrl : 'views/home/index.html'
         })
         .when('/mentions', {
             templateUrl : 'views/mention/index.html',
