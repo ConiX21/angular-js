@@ -13,6 +13,22 @@ productApp.config(function($routeProvider){
             templateUrl : 'views/contact/index.html',
             controller : 'contactCtrl'
         })
+        .when('/product', {
+            templateUrl : 'views/product/index.html',
+            controller : 'productCtrl'
+        })
+            .when('/product/add', {
+                templateUrl : 'views/product/add.html',
+                controller : 'productCtrl'
+            })
+            .when('/product/edit/:id', {
+                templateUrl : 'views/product/edit.html',
+                controller : 'productCtrl'
+            })
+            .when('/product/details/:id', {
+                templateUrl : 'views/product/details.html',
+                controller : 'productCtrl'
+            })
         .otherwise({
             redirectTo : '/home'
         })
