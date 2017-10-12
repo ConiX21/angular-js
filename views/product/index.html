@@ -19,7 +19,7 @@
                 </tr>
             </thead>
             <tbody>
-               <tr my-row ng-repeat="prod in products track by $index" prod="prod"></tr>
+               <tr my-row ng-repeat="prod in products track by $index" prod="prod" on-details="onDetails(prod.idProduct)"></tr>
             </tbody>
         </table>
     </div>

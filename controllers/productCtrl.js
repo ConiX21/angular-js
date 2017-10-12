@@ -2,35 +2,47 @@
     'use strict';
 
     productApp.controller('productCtrl', productCtrl);
-    productCtrl.$inject = ['$scope', '$interval', 'productService'];
+    productCtrl.$inject = ['$scope', '$interval', '$timeout', '$routeParams', '$location', 'productService'];
 
-    function productCtrl($scope, $interval, productService) {
+    function productCtrl($scope, $interval, $timeout, $routeParams, $location, productService) {
         var vm = this;
         $scope.size = 0;
         $scope.stateWait = true;
-       
         $scope.counter = 0;
-        
 
         activate();
 
         ////////////////
 
+        if ($location.path().split('/').includes("details")) {
+            if (angular.isDefined($routeParams.id)) {
+                $scope.product = productService.details($routeParams.id);
+            }
+        }
+
+        $scope.onDetails = function (id) {
+            $timeout(function () {
+                $location.url('/product/details/' + id)
+            }, 800);
+        }
+
         function activate() {
 
             var cpt = 0;
-            
+
             var increaseCounter = function () {
-                  $scope.size = {'width' : cpt + '%'} ;
-                  cpt += 10;
+                $scope.size = { 'width': cpt + '%' };
+                cpt += 10;
             }
-    
+
             var loop = $interval(increaseCounter, 100, 12);
-    
-            loop.then(function(){
+
+            loop.then(function () {
                 $scope.stateWait = false;
                 $scope.products = productService.getAll();
             })
         }
+
+
     }
 })();

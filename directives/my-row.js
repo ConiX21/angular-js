@@ -15,7 +15,8 @@
             templateUrl : '/directives/my-row.html',
             transclude: true,
             scope: {
-                prod : '='
+                prod : '=',
+                onDetails : '&'
             }
         };
 

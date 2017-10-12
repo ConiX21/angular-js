@@ -3,8 +3,8 @@
 
     productApp.factory('productService', productService);
 
-    productService.$inject = [];
-    function productService() {
+    productService.$inject = ['$log'];
+    function productService($log) {
         var products = [
             {
                 "idProduct": 1,
@@ -59,7 +59,10 @@
 
         ////////////////
         function details(id) {
-
+            for(var prod in products){
+                 if(products[prod].idProduct == id)
+                     return products[prod];
+            }
         }
 
         function getAll() {
