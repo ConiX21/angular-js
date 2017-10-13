@@ -34,8 +34,6 @@
             }
             else if ($location.path().split('/').includes("add")) {
                 $scope.title = "Add product";
-
-
             }
             else{
 
@@ -60,7 +58,14 @@
         };
 
         $scope.addProduct = function(product){
-            $log.info(product);
+            productService.addProduct(product).then(function (result) {
+                $log.info(result.data);
+                $location.url('/product');
+            },
+            function (response) {
+                $scope.data = response.data || 'Request failed';
+                $scope.status = response.status;
+            });
         }
 
         /*************Private Functions************/
