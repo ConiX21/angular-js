@@ -1,4 +1,4 @@
-var productApp = angular.module('productApp', ['ngRoute', 'ngAnimate']);
+var productApp = angular.module('productApp', ['ngRoute', 'ngAnimate', 'ui.bootstrap']);
 
 
 productApp.config(function($routeProvider){
@@ -34,3 +34,5 @@ productApp.config(function($routeProvider){
             redirectTo : '/home'
         })
 })
+
+productApp.constant('urlWebApi', 'http://localhost:3000/api');

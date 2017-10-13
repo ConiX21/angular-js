@@ -1,6 +1,10 @@
 <h1>{{title}}</h1>
 <div class="row">
-    <div class="col-md-8 col-md-offset-2">
+   
+    <div class="col-md-8 col-md-offset-2" ng-show="status != 200">
+        <div class="alert alert-danger" role="alert">{{data}}</div>
+    </div>
+    <div class="col-md-8 col-md-offset-2" ng-hide="status != 200">
         <div class="panel panel-info">
             <div class="panel-body">
                 <div class="row">
@@ -15,11 +19,11 @@
                         </div>
                         <div class="row">
                             <label class="col-md-3 text-right">Price HT : </label>
-                            <label class="col-md-9 text-left">{{product.priceHT | currency}}</label>
+                            <label class="col-md-9 text-left">{{product.priceHT.$numberDecimal | currency}}</label>
                         </div>
                         <div class="row">
                             <label class="col-md-3 text-right">Price TTC : </label>
-                            <label class="col-md-9 text-left">{{product.priceHT * 1.2 | currency}}</label>
+                            <label class="col-md-9 text-left">{{product.priceHT.$numberDecimal * 1.2 | currency}}</label>
                         </div>
                     </div>
                     <div class="col-md-4">

@@ -1,5 +1,7 @@
 <h1>{{title}}</h1>
 
+<div ng-show="status != 200" class="alert alert-danger" role="alert">{{status}}</div>
+
 <div class="animate-switch-container" ng-switch on="stateWait">
     <div class="animate-switch" ng-switch-when="true">
         <div class="progress">
@@ -23,3 +25,12 @@
         </table>
     </div>
 </div>
+
+
+<ul ng-hide="status != 200" uib-pagination direction-links="false"  
+    total-items="totalItems"  
+    ng-change="pageChanged()" 
+    ng-model="currentPage" 
+    items-per-page="itemsPerPage">
+</ul>
+

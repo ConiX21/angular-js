@@ -35,6 +35,33 @@ app.get('/api/products', function(req, res) {
     });
 });
 
+app.get('/api/products/page/:page', function(req, res) {
+
+    var pageParam = parseInt(req.params['page']);
+
+    if((pageParam - 1) <= 0){
+        pageParam = 0;
+    }
+    else{
+        pageParam = pageParam - 1;
+    }
+
+    database.collection('products')
+            .find()
+            .sort({created_at: -1})
+            .skip(pageParam * 5)
+            .limit(5).toArray(function(err, result) {
+        if (err) {
+            throw err;
+        }
+
+        if(result.length <= 0)
+            res.send(404, {"result" : "Not found"});
+        else
+            res.send(200, result);
+    });
+});
+
 app.get('/api/products/count', function(req, res) {
     var count = database.collection('products').count({}, function(err, count) {
         res.send({ "count": count });
@@ -62,6 +89,8 @@ app.get('/api/products/:id', function(req, res) {
         });
     }
 });
+
+
 
 app.post('/api/products', function(req, res) {
     var product = req.body.product;

@@ -1,7 +1,7 @@
 <tr>
     <td>{{prod.idProduct}}</td>
     <td>{{prod.reference}}</td>
-    <td>{{prod.priceHT | currency}}</td>
+    <td>{{prod.priceHT.$numberDecimal | currency}}</td>
     <td>
         <a class="btn btn-info" ng-href="#!/product/details/{{prod.idProduct}}">
             <span class="glyphicon glyphicon-blackboard" aria-hidden="true"></span>

@@ -2,13 +2,17 @@
     'use strict';
 
     productApp.controller('productCtrl', productCtrl);
-    productCtrl.$inject = ['$scope', '$interval', '$timeout', '$routeParams', '$location', 'productService'];
+    productCtrl.$inject = ['$log', '$scope', '$interval', '$timeout', '$routeParams', '$location', 'productService'];
 
-    function productCtrl($scope, $interval, $timeout, $routeParams, $location, productService) {
+    function productCtrl($log, $scope, $interval, $timeout, $routeParams, $location, productService) {
         var vm = this;
         $scope.size = 0;
         $scope.stateWait = true;
         $scope.counter = 0;
+        $scope.status = 200;
+        $scope.totalItems = 7;
+        $scope.currentPage = 1;
+        $scope.itemsPerPage = 5;
 
         activate();
 
@@ -16,7 +20,13 @@
 
         if ($location.path().split('/').includes("details")) {
             if (angular.isDefined($routeParams.id)) {
-                $scope.product = productService.details($routeParams.id);
+               productService.getDetails($routeParams.id).then(
+                function(result){
+                    $scope.product = result.data
+                },function (response) {
+                    $scope.data = response.data || 'Request failed';
+                    $scope.status = response.status;
+                });
             }
         }
 
@@ -25,6 +35,14 @@
                 $location.url('/product/details/' + id)
             }, 800);
         }
+
+        $scope.setPage = function (pageNo) {
+            $scope.currentPage = pageNo;
+        };
+
+        $scope.pageChanged = function () {
+            showDatasPagination();
+        };
 
         function activate() {
 
@@ -39,10 +57,24 @@
 
             loop.then(function () {
                 $scope.stateWait = false;
-                $scope.products = productService.getAll();
+                showDatasPagination();
             })
         }
 
+        function showDatasPagination() {
+            productService.getCount().then(function (result) {
+                $scope.totalItems = result.data.count;
+            });
+
+            productService.getPagination($scope.currentPage).then(function (result) {
+                console.log(result.data)
+                $scope.products = result.data;
+            },
+            function (response) {
+                $scope.data = response.data || 'Request failed';
+                $scope.status = response.status;
+            });
+        }
 
     }
 })();
