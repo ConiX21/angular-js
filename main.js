@@ -1,5 +1,6 @@
 var productApp = angular.module('productApp', ['ngRoute', 'ngAnimate']);
 
+
 productApp.config(function($routeProvider){
     $routeProvider
         .when('/home',{
