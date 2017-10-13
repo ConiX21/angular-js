@@ -2,17 +2,18 @@
     'use strict';
 
     productApp.controller('productCtrl', productCtrl);
-    productCtrl.$inject = ['$log', '$scope', '$interval', '$timeout', '$routeParams', '$location', 'productService'];
+    productCtrl.$inject = ['$log', '$scope', '$interval', '$timeout', '$routeParams', '$location', 'productService', 'configProductApp'];
 
-    function productCtrl($log, $scope, $interval, $timeout, $routeParams, $location, productService) {
+    function productCtrl($log, $scope, $interval, $timeout, $routeParams, $location, productService, configProductApp) {
         var vm = this;
         $scope.size = 0;
         $scope.stateWait = true;
         $scope.counter = 0;
         $scope.status = 200;
-        $scope.totalItems = 7;
+
+        $scope.totalItems = 0;
         $scope.currentPage = 1;
-        $scope.itemsPerPage = 5;
+        $scope.itemsPerPage = configProductApp.itemPerPage;
 
         activate();
 
@@ -67,7 +68,6 @@
             });
 
             productService.getPagination($scope.currentPage).then(function (result) {
-                console.log(result.data)
                 $scope.products = result.data;
             },
             function (response) {

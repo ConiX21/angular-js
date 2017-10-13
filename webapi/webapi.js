@@ -90,8 +90,6 @@ app.get('/api/products/:id', function(req, res) {
     }
 });
 
-
-
 app.post('/api/products', function(req, res) {
     var product = req.body.product;
     debugger

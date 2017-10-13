@@ -35,4 +35,5 @@ productApp.config(function($routeProvider){
         })
 })
 
-productApp.constant('urlWebApi', 'http://localhost:3000/api');
+productApp.constant('urlWebApi', 'http://10.105.10.8:3000/api');
+productApp.constant('configProductApp', {itemPerPage : 5});
